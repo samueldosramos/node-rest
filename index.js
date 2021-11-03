@@ -6,6 +6,6 @@ app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.get('/atendimentos', (req, res) => {
+  res.send('Rota de atendimentos');
 });
