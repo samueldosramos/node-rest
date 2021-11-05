@@ -45,6 +45,32 @@ class Atendimento {
       });
     }
   }
+
+  lista(res) {
+    const sql = 'SELECT * FROM atendimentos';
+
+    conexao.query(sql, (erro, resultados) => {
+      if (erro) {
+        res.status(400).json(erro);
+      } else {
+        res.status(200).json(resultados);
+      }
+    });
+  }
+
+  buscaPorId(id, res) {
+    const sql = 'SELECT * FROM atendimentos WHERE id = ?';
+
+    conexao.query(sql, id, (erro, resultados) => {
+      const atendimento = resultados[0];
+
+      if (erro) {
+        res.status(400).json(erro);
+      } else {
+        res.status(200).json(atendimento);
+      }
+    });
+  }
 }
 
 module.exports = new Atendimento();

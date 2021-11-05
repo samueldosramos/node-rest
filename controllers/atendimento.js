@@ -2,7 +2,11 @@ const Atendimento = require('../models/atendimentos');
 
 module.exports = (app) => {
   app.get('/atendimentos', (req, res) => {
-    res.send('Get realizado na rota de atendimentos');
+    Atendimento.lista(res);
+  });
+
+  app.get('/atendimentos/:id', (req, res) => {
+    Atendimento.buscaPorId(req.params.id, res);
   });
 
   app.post('/atendimentos', (req, res) => {
