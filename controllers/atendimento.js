@@ -14,4 +14,11 @@ module.exports = (app) => {
 
     Atendimento.adiciona(atendimento, res);
   });
+
+  app.patch('/atendimentos/:id', (req, res) => {
+    const id = req.params.id;
+    const atendimento = req.body;
+
+    Atendimento.altera(id, atendimento, res);
+  });
 };
