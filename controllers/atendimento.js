@@ -21,4 +21,10 @@ module.exports = (app) => {
 
     Atendimento.altera(id, atendimento, res);
   });
+
+  app.delete('/atendimentos/:id', (req, res) => {
+    const id = req.params.id;
+
+    Atendimento.deleta(id, res);
+  });
 };
