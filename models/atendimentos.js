@@ -10,6 +10,7 @@ class Atendimento {
 
     const dataEhValida = moment(data).isSameOrAfter(dataCriacao);
     const clienteEhValido = atendimento.cliente.length >= 5;
+
     const validacoes = [
       {
         nome: 'data',
@@ -22,17 +23,14 @@ class Atendimento {
         mensagem: 'Cliente deve ter pelo menos cinco caracteres',
       },
     ];
+
     const erros = validacoes.filter((campo) => !campo.valido);
     const existemErros = erros.length;
 
     if (existemErros) {
       res.status(400).json(erros);
     } else {
-      const atendimentoDatado = {
-        ...atendimento,
-        dataCriacao,
-        data,
-      };
+      const atendimentoDatado = { ...atendimento, dataCriacao, data };
 
       const sql = 'INSERT INTO atendimentos SET ?';
 
