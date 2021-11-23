@@ -1,30 +1,36 @@
-const Atendimento = require('../models/atendimentos');
+import {
+  addService,
+  deleteService,
+  getServices,
+  searchById,
+  updateService,
+} from '../models/atendimentos';
 
-module.exports = (app) => {
+export default (app) => {
   app.get('/atendimentos', (req, res) => {
-    Atendimento.lista(res);
+    getServices(res);
   });
 
   app.get('/atendimentos/:id', (req, res) => {
-    Atendimento.buscaPorId(req.params.id, res);
+    searchById(req.params.id, res);
   });
 
   app.post('/atendimentos', (req, res) => {
-    const atendimento = req.body;
+    const service = req.body;
 
-    Atendimento.adiciona(atendimento, res);
+    addService(service, res);
   });
 
   app.patch('/atendimentos/:id', (req, res) => {
     const id = req.params.id;
-    const atendimento = req.body;
+    const service = req.body;
 
-    Atendimento.altera(id, atendimento, res);
+    updateService(id, service, res);
   });
 
   app.delete('/atendimentos/:id', (req, res) => {
     const id = req.params.id;
 
-    Atendimento.deleta(id, res);
+    deleteService(id, res);
   });
 };

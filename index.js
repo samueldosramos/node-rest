@@ -1,14 +1,14 @@
-const customExpress = require('./config/customExpress');
-const conexao = require('./infraestrutura/conexao');
-const Tabelas = require('./infraestrutura/tabelas');
+import customExpress from './config/customExpress';
+import connection, { connect } from './infraestrutura/conexao';
+import { init } from './infraestrutura/tabelas';
 
-conexao.connect((erro) => {
-  if (erro) {
-    console.log('Não foi possível conectar ao banco de dados.');
+connect((error) => {
+  if (error) {
+    console.log('Could not connect to database.');
   } else {
-    console.log('Conexão com o banco de dados estabelecida com sucesso.');
+    console.log('Database connection established successfully.');
 
-    Tabelas.init(conexao);
+    init(connection);
     const app = customExpress();
 
     app.listen(3000, () => {

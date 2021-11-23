@@ -1,22 +1,22 @@
-class Tabelas {
-  init(conexao) {
-    this.conexao = conexao;
+class Table {
+  init(connection) {
+    this.connection = connection;
 
-    this.criarAtendimento();
+    this.createService();
   }
 
-  criarAtendimento() {
+  createService() {
     const sql =
-      'CREATE TABLE IF NOT EXISTS Atendimentos (id int NOT NULL AUTO_INCREMENT, cliente varchar(50) NOT NULL, pet varchar(20), servico varchar(20) NOT NULL, data datetime NOT NULL, dataCriacao datetime NOT NULL, status varchar(20) NOT NULL, observacoes text, PRIMARY KEY (id))';
+      'CREATE TABLE IF NOT EXISTS services (id int NOT NULL AUTO_INCREMENT, customer varchar(50) NOT NULL, pet varchar(20), service varchar(20) NOT NULL, date datetime NOT NULL, creationDate datetime NOT NULL, status varchar(20) NOT NULL, note text, PRIMARY KEY (id))';
 
-    return this.conexao.query(sql, (erro) => {
-      if (erro) {
-        console.log(erro);
+    return this.connection.query(sql, (error) => {
+      if (error) {
+        console.log(error);
       } else {
-        console.log('Tabela Atendimentos criada com sucesso!');
+        console.log('Service table created successfully!');
       }
     });
   }
 }
 
-module.exports = new Tabelas();
+export default new Table();
